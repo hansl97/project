@@ -1,7 +1,9 @@
 var comScore = 0;
 var userScore = 0;
+var isComputerTurn = true;
 
 function onComputerShoot() {
+    if (!isComputerTurn) return;
     var textElem = document.getElementById('text');
     var comScoreElem = document.getElementById('computer-score');
     var shootType = Math.random() < 0.5 ? 2 : 3;
@@ -23,9 +25,11 @@ function onComputerShoot() {
             textElem.innerHTML = '컴퓨터가 3점슛을 실패했습니다.';
         }
     }
+    isComputerTurn = false;
 }
 
 function onUserShoot(shootType) {
+    if(isComputerTurn) return;
     var textElem = document.getElementById('text');
     var userScoreElem = document.getElementById('user-score');
 
@@ -46,4 +50,5 @@ function onUserShoot(shootType) {
             textElem.innerHTML = '3점슛이 실패했습니다.';
         }
     }
+    isComputerTurn = true;
 }
